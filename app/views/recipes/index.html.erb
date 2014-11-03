@@ -1,37 +1,21 @@
-<h1>Listing recipes</h1>
+<ul class="nav nav-pills">
+  <li>
+    <%= link_to('New Recipe', new_recipe_path) %>
+  </li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Course</th>
-      <th>Cooktime</th>
-      <th>Servingsize</th>
-      <th>Instructions</th>
-      <th>Image</th>
-      <th>Book</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.course %></td>
-        <td><%= recipe.cooktime %></td>
-        <td><%= recipe.servingsize %></td>
-        <td><%= recipe.instructions %></td>
-        <td><%= recipe.image %></td>
-        <td><%= recipe.book_id %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+<% @recipes.each do |recipe| %>
+  <div class="row">
+     <div class="col-md-4 col-sm-4">
+      <p class="lead"><%= link_to(recipe.name, recipe) %>
+      <p>Course: <%= recipe.course %>
+      <p>Cook time: <%= recipe.cooktime %>
+      <p>Serving size: <%= recipe.servingsize %>
+      <p><strong>Instructions:</strong><br> <%= recipe.instructions %>
+    </div>
+     <div class="col-md-8 col-sm-8">
+      <p><%= image_tag(recipe.image) %>
+    </div>
+  </div>
+<% end %>
